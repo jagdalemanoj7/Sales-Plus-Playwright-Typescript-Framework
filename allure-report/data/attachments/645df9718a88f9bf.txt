@@ -1,0 +1,3 @@
+Application launched successfully
+Login page is displayed successfully
+Pipeline page is displayed successfully

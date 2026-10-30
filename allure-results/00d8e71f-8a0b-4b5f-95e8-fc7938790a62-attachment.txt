@@ -1,0 +1,5 @@
+Application launched successfully
+Login page is displayed successfully
+Dashboard Page is displayed successfully
+clicked on Lead menu link
+Leads page is displayed successfully

@@ -1,0 +1,141 @@
+{
+    "user": {
+        "user1": {
+            "userName": "loginAsUserRavi",
+            "userIdValue": 2,
+            "userNameValue": "ravi",
+            "nameValue": "Ravi Kumar",
+            "userEmailValue": "ravi@example.com"
+        },
+        "user2": {
+            "userName": "loginAsUserMeera",
+            "userIdValue": 3,
+            "userNameValue": "meera",
+            "nameValue": "Meera Iyer",
+            "userEmailValue": "meera@example.com"
+        },
+        "main": "loginAsAdmin"
+    },
+    "wrongPassword":{
+        "requestType": "post",
+        "endpoint": "/api/auth/login",
+        "payload": {
+            "username": "ravi",
+            "password": "wrong"
+        },
+        "expCode": 401,
+        "expStatusMessage": "Unauthorized",
+        "codeKey": "error.code",
+        "codeValue": "INVALID_CREDENTIALS",
+        "messageKey": "error.message",
+        "messageValue": "Username or password is wrong."
+    },
+    "whoAmI": {
+        "requestType": "get",
+        "endpoint": "api/auth/me",
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "userIdKey": "id",
+        "userNameKey": "username",
+        "nameKey": "name",
+        "userEmailKey": "email",
+        "userRoleKey": "role",
+        "userRoleValue": "customer"
+    },
+    "noToken": {
+        "requestType": "get",
+        "endpoint": "api/auth/me",
+        "expCode": 401,
+        "expStatusMessage": "Unauthorized",
+        "codeKey": "error.code",
+        "codeValue": "UNAUTHORIZED",
+        "messageKey": "error.message",
+        "messageValue": "Send a token: Authorization: Bearer <token>"
+    },
+    "loginAsAdmin": {
+        "userName": "loginAsAdmin",
+        "requestType": "post",
+        "endpoint": "/api/auth/login",
+        "payload": {
+            "username": "admin",
+            "password": "Admin@123"
+        },
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "tokenKey": "token",
+        "expiresInKey": "expiresIn",
+        "expiresInValue": 900,
+        "tokenTypeKey": "tokenType",
+        "tokenTypeValue": "Bearer",
+        "userIdKey": "user.id",
+        "userIdValue": 1,
+        "userNameKey": "user.username",
+        "userNameValue": "admin",
+        "nameKey": "user.name",
+        "nameValue": "Asha Rao",
+        "userEmailKey": "user.email",
+        "userEmailValue": "asha.admin@example.com",
+        "userRoleKey": "user.role",
+        "userRoleValue": "admin"
+    },
+    "loginAsUserRavi": {
+        "userName": "loginAsUserRavi",
+        "requestType": "post",
+        "endpoint": "/api/auth/login",
+        "payload": {
+            "username": "ravi",
+            "password": "Ravi@123"
+        },
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "tokenKey": "token",
+        "expiresInKey": "expiresIn",
+        "expiresInValue": 900,
+        "tokenTypeKey": "tokenType",
+        "tokenTypeValue": "Bearer",
+        "userIdKey": "user.id",
+        "userIdValue": 2,
+        "userNameKey": "user.username",
+        "userNameValue": "ravi",
+        "nameKey": "user.name",
+        "nameValue": "Ravi Kumar",
+        "userEmailKey": "user.email",
+        "userEmailValue": "ravi@example.com",
+        "userRoleKey": "user.role",
+        "userRoleValue": "customer"
+    },
+    "loginAsUserMeera": {
+        "userName": "loginAsUserMeera",
+        "requestType": "post",
+        "endpoint": "/api/auth/login",
+        "payload": {
+            "username": "meera",
+            "password": "Meera@123"
+        },
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "tokenKey": "token",
+        "expiresInKey": "expiresIn",
+        "expiresInValue": 900,
+        "tokenTypeKey": "tokenType",
+        "tokenTypeValue": "Bearer",
+        "userIdKey": "user.id",
+        "userIdValue": 3,
+        "userNameKey": "user.username",
+        "userNameValue": "meera",
+        "nameKey": "user.name",
+        "nameValue": "Meera Iyer",
+        "userEmailKey": "user.email",
+        "userEmailValue": "meera@example.com",
+        "userRoleKey": "user.role",
+        "userRoleValue": "customer"
+    },    
+    "restoreStartingData": {
+        "requestType": "post",
+        "endpoint": "/api/reset",
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "messageKey": "message",
+        "messageValue": "All data restored to the starting state. Log in again."
+    }
+}

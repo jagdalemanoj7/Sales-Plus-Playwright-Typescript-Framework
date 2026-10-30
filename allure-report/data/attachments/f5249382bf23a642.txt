@@ -1,0 +1,17 @@
+Application launched successfully
+Login page is displayed successfully
+Dashboard Page is displayed successfully
+Leads button is clicked
+Leads page is displayed successfully
+clicked on New Lead button
+New Lead form is displayed successfully
+New Lead details are provided successfully
+Search contact name is entered successfully
+New Lead, status is converted and Banner displayed successfully
+Searched Lead is clicked successfully
+Convert to Lead page is displayed successfully
+Note is added and saved successfully
+Status Provided and CLicked on convert to deal successfully
+Confirm Convert To Deal Form is Displayed Successfully
+Deal Created Successfully
+Pipeline page is displayed successfully

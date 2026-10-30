@@ -1,0 +1,442 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui\leads-page-test.spec.ts >> Leads Page Feature Test >> Verify Filtered Lead Record According To Status And Source
+- Location: tests\ui\leads-page-test.spec.ts:84:9
+
+# Error details
+
+```
+Error: expect(locator).toHaveCount(expected) failed
+
+Locator:  locator('//td/span')
+Expected: 5
+Received: 3
+Timeout:  5000ms
+
+Call log:
+  - Expect "toHaveCount" locator('//td/span') with timeout 5000ms
+  - waiting for locator('//td/span')
+    14 × locator resolved to 3 elements
+       - unexpected value "3"
+
+```
+
+# Page snapshot
+
+```yaml
+- generic [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "PracticeQAAutomation logo PracticeQAAutomation" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "PracticeQAAutomation logo" [ref=e5]
+        - generic [ref=e6]: PracticeQAAutomation
+      - navigation "Main" [ref=e7]:
+        - button "Tools" [ref=e9]
+        - button "Apps" [ref=e13]
+        - button "Challenges" [ref=e17]
+        - button "AI" [ref=e21]:
+          - generic [aria-hidden] [ref=e22]: ✨
+          - text: AI
+        - button "Interview" [ref=e26]
+        - link "What's new New release" [ref=e29] [cursor=pointer]:
+          - /url: /releases
+          - generic [ref=e30]:
+            - text: What's new
+            - generic "New release" [ref=e31]
+        - link "About Me" [ref=e32] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e33]:
+        - link "Support this site" [ref=e34] [cursor=pointer]:
+          - /url: https://rzp.io/rzp/supportpracticeqaautomation
+          - generic [aria-hidden] [ref=e35]: ☕
+        - button "Switch to light theme" [ref=e36]
+  - main [ref=e40]:
+    - generic [ref=e41]:
+      - generic [ref=e43]:
+        - button "Go back" [ref=e44]
+        - link "📈 SalesPulse" [ref=e47] [cursor=pointer]:
+          - /url: /apps/crm
+          - generic [ref=e48]: 📈
+          - generic [ref=e49]: SalesPulse
+        - navigation [ref=e50]:
+          - link "Dashboard" [ref=e51] [cursor=pointer]:
+            - /url: /apps/crm/dashboard
+          - link "Leads" [active] [ref=e52] [cursor=pointer]:
+            - /url: /apps/crm/leads
+          - link "Pipeline" [ref=e53] [cursor=pointer]:
+            - /url: /apps/crm/pipeline
+        - generic [ref=e54]:
+          - button "🧑‍🏫 AI coach · paused" [ref=e55]:
+            - text: 🧑‍🏫
+            - generic [ref=e56]: AI coach · paused
+          - generic [ref=e57]: Maya Chen
+          - button "Log out" [ref=e58] [cursor=pointer]
+      - generic [ref=e60]:
+        - generic [ref=e61]:
+          - generic [ref=e62]:
+            - heading "Leads" [level=1] [ref=e63]
+            - paragraph [ref=e64]:
+              - generic [ref=e65]: 3 leads
+          - button "+ New lead" [ref=e66] [cursor=pointer]
+        - generic [ref=e67]:
+          - searchbox "Search leads" [ref=e68]
+          - combobox "Status" [ref=e69]:
+            - option "All statuses"
+            - option "New" [selected]
+            - option "Contacted"
+            - option "Qualified"
+            - option "Unqualified"
+            - option "Converted"
+          - combobox "Source" [ref=e70]:
+            - option "All sources" [selected]
+            - option "Website"
+            - option "Referral"
+            - option "LinkedIn"
+            - option "Event"
+            - option "Cold call"
+        - table [ref=e72]:
+          - rowgroup [ref=e73]:
+            - row [ref=e74]:
+              - columnheader [ref=e75]:
+                - checkbox "Select all" [ref=e76]
+              - columnheader "Lead" [ref=e77]
+              - columnheader "Company" [ref=e78]
+              - columnheader "Source" [ref=e79]
+              - columnheader "Status" [ref=e80]
+              - columnheader "Owner" [ref=e81]
+              - columnheader "Value" [ref=e82]
+          - rowgroup [ref=e83]:
+            - row [ref=e84]:
+              - cell [ref=e85]:
+                - checkbox "Select Chloe Martin" [ref=e86]
+              - cell "Chloe Martin chloe@pied.com" [ref=e87]:
+                - link "Chloe Martin" [ref=e88] [cursor=pointer]:
+                  - /url: /apps/crm/leads/L-1009
+                - generic [ref=e89]: chloe@pied.com
+              - cell "Pied Piper" [ref=e90]
+              - cell "Event" [ref=e91]
+              - cell "New" [ref=e92]
+              - cell "Maya Chen" [ref=e94]
+              - cell "$57,000" [ref=e95]
+            - row [ref=e96]:
+              - cell [ref=e97]:
+                - checkbox "Select Mia Lopez" [ref=e98]
+              - cell "Mia Lopez mia@wayne.com" [ref=e99]:
+                - link "Mia Lopez" [ref=e100] [cursor=pointer]:
+                  - /url: /apps/crm/leads/L-1005
+                - generic [ref=e101]: mia@wayne.com
+              - cell "Wayne Retail" [ref=e102]
+              - cell "Cold call" [ref=e103]
+              - cell "New" [ref=e104]
+              - cell "Maya Chen" [ref=e106]
+              - cell "$61,000" [ref=e107]
+            - row [ref=e108]:
+              - cell [ref=e109]:
+                - checkbox "Select Ava Brooks" [ref=e110]
+              - cell "Ava Brooks ava@acme.com" [ref=e111]:
+                - link "Ava Brooks" [ref=e112] [cursor=pointer]:
+                  - /url: /apps/crm/leads/L-1001
+                - generic [ref=e113]: ava@acme.com
+              - cell "Acme Industries" [ref=e114]
+              - cell "Website" [ref=e115]
+              - cell "New" [ref=e116]
+              - cell "Maya Chen" [ref=e118]
+              - cell "$5,000" [ref=e119]
+  - contentinfo [ref=e120]:
+    - generic [ref=e121]:
+      - generic [ref=e122]:
+        - link "PracticeQAAutomation — home" [ref=e123] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e124]: PracticeQAAutomation
+        - paragraph [ref=e125]: A free sandbox of real apps and interactive elements for Selenium, Playwright and Cypress practice.
+        - generic [ref=e126]:
+          - link "Follow us on LinkedIn" [ref=e127] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/practice-qa-automation
+          - link "Support this site" [ref=e130] [cursor=pointer]:
+            - /url: https://rzp.io/rzp/supportpracticeqaautomation
+            - generic [aria-hidden] [ref=e131]: ☕
+            - text: Support this site
+      - generic [ref=e132]:
+        - generic [ref=e133]:
+          - generic [ref=e134]: Tools
+          - link "Selenium" [ref=e135] [cursor=pointer]:
+            - /url: /selenium
+          - link "Playwright" [ref=e136] [cursor=pointer]:
+            - /url: /playwright
+          - link "Cypress" [ref=e137] [cursor=pointer]:
+            - /url: /cypress
+        - generic [ref=e138]:
+          - generic [ref=e139]: Apps
+          - link "All domain apps" [ref=e140] [cursor=pointer]:
+            - /url: /apps
+          - link "📘 Project KT" [ref=e141] [cursor=pointer]:
+            - /url: /projects
+          - link "Nova Shop" [ref=e142] [cursor=pointer]:
+            - /url: /shop
+          - link "TrustBank" [ref=e143] [cursor=pointer]:
+            - /url: /apps/bank
+          - link "SecureLife" [ref=e144] [cursor=pointer]:
+            - /url: /apps/insurance
+        - generic [ref=e145]:
+          - generic [ref=e146]: Practice
+          - link "📄 Start-here guide (PDF)" [ref=e147] [cursor=pointer]:
+            - /url: /downloads/practiceqa-start-guide.pdf
+          - link "Challenges" [ref=e148] [cursor=pointer]:
+            - /url: /challenges
+          - link "🔥 Daily challenge" [ref=e149] [cursor=pointer]:
+            - /url: /daily
+          - link "Basic Auth" [ref=e150] [cursor=pointer]:
+            - /url: /misc/basic-auth
+          - link "✨ AI tools" [ref=e151] [cursor=pointer]:
+            - /url: /ai
+          - link "🔌 API practice" [ref=e152] [cursor=pointer]:
+            - /url: /api-practice
+          - link "🗄️ SQL Playground" [ref=e153] [cursor=pointer]:
+            - /url: /sql-playground
+          - link "📈 Performance testing" [ref=e154] [cursor=pointer]:
+            - /url: /performance-testing
+          - link "🥒 BDD & Cucumber" [ref=e155] [cursor=pointer]:
+            - /url: /bdd
+          - link "🧱 Framework & CI" [ref=e156] [cursor=pointer]:
+            - /url: /framework-ci
+          - link "Test case library" [ref=e157] [cursor=pointer]:
+            - /url: /test-cases
+          - link "🎯 Interview questions" [ref=e158] [cursor=pointer]:
+            - /url: /interview
+          - link "🧠 Interview quiz" [ref=e159] [cursor=pointer]:
+            - /url: /interview/quiz
+          - link "🤝 Share your interview" [ref=e160] [cursor=pointer]:
+            - /url: /interview/share
+          - link "🆕 What's new" [ref=e161] [cursor=pointer]:
+            - /url: /releases
+          - link "About Me" [ref=e162] [cursor=pointer]:
+            - /url: /about
+          - link "Report a bug" [ref=e163] [cursor=pointer]:
+            - /url: /about#feedback
+    - generic [ref=e165]:
+      - paragraph [ref=e166]:
+        - text: © 2026 PracticeQAAutomation. All rights reserved. ·
+        - link "Privacy" [ref=e167] [cursor=pointer]:
+          - /url: /privacy
+      - paragraph [ref=e168]:
+        - text: Made by
+        - link "Amir" [ref=e169] [cursor=pointer]:
+          - /url: /about
+        - text: with
+        - img "love" [ref=e170]: ❤️
+  - alert [ref=e171]
+```
+
+# Test source
+
+```ts
+  270 |       locator,
+  271 |       locatorType,
+  272 |       frameLocator,
+  273 |       role,
+  274 |     );
+  275 |     await this.scrollToElement(locator, locatorType, frameLocator, role);
+  276 |     return await element.textContent();
+  277 |   }
+  278 | 
+  279 |   // Compare text values
+  280 |   async compareText(actual: string, expected: string): Promise<void> {
+  281 |     if (!actual.match(expected)) {
+  282 |       throw new Error(`Expected Value is ${expected} , But found ${actual}`);
+  283 |     }
+  284 |   }
+  285 | 
+  286 |   // get the text from element using innerText() method
+  287 |   async getElementInnerText(
+  288 |     locator: string,
+  289 |     locatorType: string,
+  290 |     index?: number,
+  291 |     frameLocator?: string,
+  292 |     role?: any,
+  293 |   ): Promise<string | null> {
+  294 |     const element = await this.element(
+  295 |       locator,
+  296 |       locatorType,
+  297 |       frameLocator,
+  298 |       role,
+  299 |     );
+  300 |     // await this.scrollToElement(locator, locatorType, frameLocator, role);
+  301 |     return await element.nth(index).innerText();
+  302 |   }
+  303 | 
+  304 |   // get the all text from elements using innerText() method
+  305 |   async getAllElementInnerText(
+  306 |     locator: string,
+  307 |     locatorType: string,
+  308 |     frameLocator?: string,
+  309 |     role?: any,
+  310 |   ): Promise<string[] | null> {
+  311 |     const element = await this.element(
+  312 |       locator,
+  313 |       locatorType,
+  314 |       frameLocator,
+  315 |       role,
+  316 |     );
+  317 |     await this.scrollToElement(locator, locatorType, frameLocator, role);
+  318 |     return await element.allInnerTexts();
+  319 |   }
+  320 | 
+  321 |   async verifyTextFilled(
+  322 |     locator: string,
+  323 |     locatorType: string,
+  324 |     expectedValue: string,
+  325 |     frameLocator?: string,
+  326 |     role?: any,
+  327 |   ): Promise<void> {
+  328 |     const element = await this.element(
+  329 |       locator,
+  330 |       locatorType,
+  331 |       frameLocator,
+  332 |       role,
+  333 |     );
+  334 |     await expect(element).toHaveValue(expectedValue);
+  335 |   }
+  336 | 
+  337 |   async verifyDisplayedText(
+  338 |     locator: string,
+  339 |     locatorType: string,
+  340 |     expectedText: string,
+  341 |     index?: number | undefined,
+  342 |     frameLocator?: string,
+  343 |     role?: any,
+  344 |     
+  345 |   ): Promise<void> {
+  346 |     const element = await this.element(
+  347 |       locator,
+  348 |       locatorType,
+  349 |       frameLocator,
+  350 |       role,
+  351 |     );
+  352 |     await expect(element.nth(index)).toHaveText(expectedText);
+  353 |     await expect(element).toHaveCount()
+  354 |   }
+  355 | 
+  356 |   async verifyElementCount(
+  357 |     locator: string,
+  358 |     locatorType: string,
+  359 |     count: number,
+  360 |     frameLocator?: string,
+  361 |     role?: any,
+  362 |     
+  363 |   ): Promise<void> {
+  364 |     const element = await this.element(
+  365 |       locator,
+  366 |       locatorType,
+  367 |       frameLocator,
+  368 |       role,
+  369 |     );    
+> 370 |     await expect(element).toHaveCount(count)
+      |                           ^ Error: expect(locator).toHaveCount(expected) failed
+  371 |   }
+  372 | 
+  373 |   /*   async verifyDropdownValueSelected(locator: string, locatorType: string, expectedValue: string, frameLocator?: string, role?: any): Promise<void> {
+  374 |     const element = await this.element(locator, locatorType, frameLocator, role);
+  375 |     await expect(element).toHaveValue(expectedValue);
+  376 |   } */
+  377 | 
+  378 |   // Get element attribute
+  379 |   async getElementAttribute(
+  380 |     locator: string,
+  381 |     locatorType: string,
+  382 |     attribute: string,
+  383 |     frameLocator?: string,
+  384 |     role?: any,
+  385 |   ): Promise<string | null> {
+  386 |     const element = await this.element(
+  387 |       locator,
+  388 |       locatorType,
+  389 |       frameLocator,
+  390 |       role,
+  391 |     );
+  392 |     await this.scrollToElement(locator, locatorType, frameLocator, role);
+  393 |     return await element.getAttribute(attribute);
+  394 |   }
+  395 | 
+  396 |   // Upload an element
+  397 |   async uploadFile(
+  398 |     locator: string,
+  399 |     locatorType: string,
+  400 |     filePath: string,
+  401 |     frameLocator?: string,
+  402 |     role?: any,
+  403 |   ): Promise<void> {
+  404 |     const element = await this.element(
+  405 |       locator,
+  406 |       locatorType,
+  407 |       frameLocator,
+  408 |       role,
+  409 |     );
+  410 |     await this.scrollToElement(locator, locatorType, frameLocator, role);
+  411 |     await element.setInputFiles(filePath);
+  412 |   }
+  413 | 
+  414 |   async scrollToFilteredElement(
+  415 |     element: Locator
+  416 |   ): Promise<void>{
+  417 |     await element.scrollIntoViewIfNeeded({ timeout: 50000 })
+  418 |   }
+  419 | 
+  420 |   // Filter rlement
+  421 |   async filter(
+  422 |     locator: string,
+  423 |     locatorType: string,
+  424 |     data: string,
+  425 |     frameLocator?: string,
+  426 |     role?: any,
+  427 |   ): Promise<Locator> {
+  428 |     const element = await this.element(
+  429 |       locator,
+  430 |       locatorType,
+  431 |       frameLocator,
+  432 |       role,
+  433 |     );
+  434 |     const filteredElement = await element.filter({ hasText: data });
+  435 |     await this.scrollToFilteredElement(filteredElement)
+  436 |     await expect(filteredElement).toBeVisible({ timeout: 50000 })
+  437 |     return filteredElement;
+  438 |   }
+  439 | 
+  440 |   // Drag and Drop Element
+  441 |   async dragAndDrop(
+  442 |     sourceElement: Locator,
+  443 |     targetElement: Locator,
+  444 |   ): Promise<void> {
+  445 |     await sourceElement.dragTo(targetElement);
+  446 |   }
+  447 | 
+  448 |   // Verify element having text value
+  449 |   async verifyElementText(
+  450 |     locator: string,
+  451 |     locatorType: string,
+  452 |     expectedText: string,
+  453 |     frameLocator?: string,
+  454 |     role?: any,
+  455 |   ) {
+  456 |     const element = await this.element(
+  457 |       locator,
+  458 |       locatorType,
+  459 |       frameLocator,
+  460 |       role,
+  461 |     );
+  462 |     await expect(element).toHaveText(expectedText);
+  463 |   }
+  464 |   
+  465 |   // Check if an element is visible
+  466 |   async isElementVisible(
+  467 |     locator: string,
+  468 |     locatorType: string,
+  469 |     frameLocator?: string,
+  470 |     role?: any,
+```

@@ -1,0 +1,12 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": "Debug API test",
+            "type": "node-terminal",
+            "request": "launch",
+            "command": "npx playwright test tests/api/t-test.spec.ts --debug --grep \"Admin Login\"",
+            "cwd": "${workspaceFolder}/tddframework"
+        }
+    ]
+}

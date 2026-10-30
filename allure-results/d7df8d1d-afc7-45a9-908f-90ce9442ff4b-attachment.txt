@@ -1,0 +1,4 @@
+Application launched successfully
+Login page is displayed successfully
+Dashboard Page is displayed successfully
+logout Button is clicked

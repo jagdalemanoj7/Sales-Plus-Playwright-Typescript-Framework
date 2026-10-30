@@ -1,0 +1,248 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui\pipeline-page-test.spec.ts >> Leads Page Feature Test >> Verify Drag And Drop Lead from Qualified to Proposal Section
+- Location: tests\ui\pipeline-page-test.spec.ts:28:9
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "PracticeQAAutomation logo PracticeQAAutomation" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "PracticeQAAutomation logo" [ref=e5]
+        - generic [ref=e6]: PracticeQAAutomation
+      - navigation "Main" [ref=e7]:
+        - button "Tools" [ref=e9]
+        - button "Apps" [ref=e13]
+        - button "Challenges" [ref=e17]
+        - button "AI" [ref=e21]:
+          - generic [aria-hidden] [ref=e22]: ✨
+          - text: AI
+        - button "Interview" [ref=e26]
+        - link "What's new New release" [ref=e29] [cursor=pointer]:
+          - /url: /releases
+          - generic [ref=e30]:
+            - text: What's new
+            - generic "New release" [ref=e31]
+        - link "About Me" [ref=e32] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e33]:
+        - link "Support this site" [ref=e34] [cursor=pointer]:
+          - /url: https://rzp.io/rzp/supportpracticeqaautomation
+          - generic [aria-hidden] [ref=e35]: ☕
+        - button "Switch to light theme" [ref=e36]
+  - main [ref=e40]:
+    - generic [ref=e41]:
+      - generic [ref=e43]:
+        - button "Go back" [ref=e44]
+        - link "📈 SalesPulse" [ref=e47] [cursor=pointer]:
+          - /url: /apps/crm
+          - generic [ref=e48]: 📈
+          - generic [ref=e49]: SalesPulse
+        - navigation [ref=e50]:
+          - link "Dashboard" [ref=e51] [cursor=pointer]:
+            - /url: /apps/crm/dashboard
+          - link "Leads" [ref=e52] [cursor=pointer]:
+            - /url: /apps/crm/leads
+          - link "Pipeline" [ref=e53] [cursor=pointer]:
+            - /url: /apps/crm/pipeline
+        - generic [ref=e54]:
+          - button "🧑‍🏫 AI coach · paused" [ref=e55]:
+            - text: 🧑‍🏫
+            - generic [ref=e56]: AI coach · paused
+          - generic [ref=e57]: Maya Chen
+          - button "Log out" [ref=e58] [cursor=pointer]
+      - generic [ref=e60]:
+        - generic [ref=e62]:
+          - heading "Pipeline" [level=1] [ref=e63]
+          - paragraph [ref=e64]: Drag cards between columns, or use the “Move to” menu on each card.
+        - generic [ref=e65]:
+          - region "Qualified" [ref=e66]:
+            - generic [ref=e69]:
+              - heading "Qualified 0" [level=2] [ref=e70]
+              - generic [ref=e71]: $0
+            - list [ref=e72]
+          - region "Proposal" [ref=e73]:
+            - generic [ref=e76]:
+              - heading "Proposal 3" [level=2] [ref=e77]
+              - generic [ref=e78]: $209,000
+            - list [ref=e79]:
+              - listitem [ref=e80]:
+                - paragraph [ref=e81]: Umbrella Health
+                - paragraph [ref=e82]: Noah Singh · Maya Chen
+                - generic [ref=e83]:
+                  - generic [ref=e84]: $42,000
+                  - combobox "Move Umbrella Health" [ref=e85]:
+                    - option "Qualified"
+                    - option "Proposal" [selected]
+                    - option "Negotiation"
+                    - option "Won"
+                    - option "Lost"
+              - listitem [ref=e86]:
+                - paragraph [ref=e87]: Stark Logistics
+                - paragraph [ref=e88]: Emma Wilson · Leo Park
+                - generic [ref=e89]:
+                  - generic [ref=e90]: $76,000
+                  - combobox "Move Stark Logistics" [ref=e91]:
+                    - option "Qualified"
+                    - option "Proposal" [selected]
+                    - option "Negotiation"
+                    - option "Won"
+                    - option "Lost"
+              - listitem [ref=e92]:
+                - paragraph [ref=e93]: Tyrell Robotics
+                - paragraph [ref=e94]: Ivy Nguyen · Omar Haddad
+                - generic [ref=e95]:
+                  - generic [ref=e96]: $91,000
+                  - combobox "Move Tyrell Robotics" [ref=e97]:
+                    - option "Qualified"
+                    - option "Proposal" [selected]
+                    - option "Negotiation"
+                    - option "Won"
+                    - option "Lost"
+          - region "Negotiation" [ref=e98]:
+            - generic [ref=e101]:
+              - heading "Negotiation 1" [level=2] [ref=e102]
+              - generic [ref=e103]: $18,000
+            - list [ref=e104]:
+              - listitem [ref=e105]:
+                - paragraph [ref=e106]: Soylent Foods
+                - paragraph [ref=e107]: Zoe Adams · Nina Rossi
+                - generic [ref=e108]:
+                  - generic [ref=e109]: $18,000
+                  - combobox "Move Soylent Foods" [ref=e110]:
+                    - option "Qualified"
+                    - option "Proposal"
+                    - option "Negotiation" [selected]
+                    - option "Won"
+                    - option "Lost"
+          - region "Won" [ref=e111]:
+            - generic [ref=e114]:
+              - heading "Won 1" [level=2] [ref=e115]
+              - generic [ref=e116]: $55,000
+            - list [ref=e117]:
+              - listitem [ref=e118]:
+                - paragraph [ref=e119]: Vandelay Imports
+                - paragraph [ref=e120]: Lucas Meyer · Maya Chen
+                - generic [ref=e121]:
+                  - generic [ref=e122]: $55,000
+                  - combobox "Move Vandelay Imports" [ref=e123]:
+                    - option "Qualified"
+                    - option "Proposal"
+                    - option "Negotiation"
+                    - option "Won" [selected]
+                    - option "Lost"
+          - region "Lost" [ref=e124]:
+            - generic [ref=e127]:
+              - heading "Lost 1" [level=2] [ref=e128]
+              - generic [ref=e129]: $24,000
+            - list [ref=e130]:
+              - listitem [ref=e131]:
+                - paragraph [ref=e132]: Oscorp Labs
+                - paragraph [ref=e133]: Owen Scott · Leo Park
+                - generic [ref=e134]:
+                  - generic [ref=e135]: $24,000
+                  - combobox "Move Oscorp Labs" [ref=e136]:
+                    - option "Qualified"
+                    - option "Proposal"
+                    - option "Negotiation"
+                    - option "Won"
+                    - option "Lost" [selected]
+  - contentinfo [ref=e137]:
+    - generic [ref=e138]:
+      - generic [ref=e139]:
+        - link "PracticeQAAutomation — home" [ref=e140] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e141]: PracticeQAAutomation
+        - paragraph [ref=e142]: A free sandbox of real apps and interactive elements for Selenium, Playwright and Cypress practice.
+        - generic [ref=e143]:
+          - link "Follow us on LinkedIn" [ref=e144] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/practice-qa-automation
+          - link "Support this site" [ref=e147] [cursor=pointer]:
+            - /url: https://rzp.io/rzp/supportpracticeqaautomation
+            - generic [aria-hidden] [ref=e148]: ☕
+            - text: Support this site
+      - generic [ref=e149]:
+        - generic [ref=e150]:
+          - generic [ref=e151]: Tools
+          - link "Selenium" [ref=e152] [cursor=pointer]:
+            - /url: /selenium
+          - link "Playwright" [ref=e153] [cursor=pointer]:
+            - /url: /playwright
+          - link "Cypress" [ref=e154] [cursor=pointer]:
+            - /url: /cypress
+        - generic [ref=e155]:
+          - generic [ref=e156]: Apps
+          - link "All domain apps" [ref=e157] [cursor=pointer]:
+            - /url: /apps
+          - link "📘 Project KT" [ref=e158] [cursor=pointer]:
+            - /url: /projects
+          - link "Nova Shop" [ref=e159] [cursor=pointer]:
+            - /url: /shop
+          - link "TrustBank" [ref=e160] [cursor=pointer]:
+            - /url: /apps/bank
+          - link "SecureLife" [ref=e161] [cursor=pointer]:
+            - /url: /apps/insurance
+        - generic [ref=e162]:
+          - generic [ref=e163]: Practice
+          - link "📄 Start-here guide (PDF)" [ref=e164] [cursor=pointer]:
+            - /url: /downloads/practiceqa-start-guide.pdf
+          - link "Challenges" [ref=e165] [cursor=pointer]:
+            - /url: /challenges
+          - link "🔥 Daily challenge" [ref=e166] [cursor=pointer]:
+            - /url: /daily
+          - link "Basic Auth" [ref=e167] [cursor=pointer]:
+            - /url: /misc/basic-auth
+          - link "✨ AI tools" [ref=e168] [cursor=pointer]:
+            - /url: /ai
+          - link "🔌 API practice" [ref=e169] [cursor=pointer]:
+            - /url: /api-practice
+          - link "🗄️ SQL Playground" [ref=e170] [cursor=pointer]:
+            - /url: /sql-playground
+          - link "📈 Performance testing" [ref=e171] [cursor=pointer]:
+            - /url: /performance-testing
+          - link "🥒 BDD & Cucumber" [ref=e172] [cursor=pointer]:
+            - /url: /bdd
+          - link "🧱 Framework & CI" [ref=e173] [cursor=pointer]:
+            - /url: /framework-ci
+          - link "Test case library" [ref=e174] [cursor=pointer]:
+            - /url: /test-cases
+          - link "🎯 Interview questions" [ref=e175] [cursor=pointer]:
+            - /url: /interview
+          - link "🧠 Interview quiz" [ref=e176] [cursor=pointer]:
+            - /url: /interview/quiz
+          - link "🤝 Share your interview" [ref=e177] [cursor=pointer]:
+            - /url: /interview/share
+          - link "🆕 What's new" [ref=e178] [cursor=pointer]:
+            - /url: /releases
+          - link "About Me" [ref=e179] [cursor=pointer]:
+            - /url: /about
+          - link "Report a bug" [ref=e180] [cursor=pointer]:
+            - /url: /about#feedback
+    - generic [ref=e182]:
+      - paragraph [ref=e183]:
+        - text: © 2026 PracticeQAAutomation. All rights reserved. ·
+        - link "Privacy" [ref=e184] [cursor=pointer]:
+          - /url: /privacy
+      - paragraph [ref=e185]:
+        - text: Made by
+        - link "Amir" [ref=e186] [cursor=pointer]:
+          - /url: /about
+        - text: with
+        - img "love" [ref=e187]: ❤️
+  - alert [ref=e188]
+```

@@ -1,0 +1,198 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui\login-page-test.spec.ts >> Login Page Feature Test >> Verify login functionality with valid credentials
+- Location: tests\ui\login-page-test.spec.ts:24:9
+
+# Error details
+
+```
+Test timeout of 30000ms exceeded.
+```
+
+# Page snapshot
+
+```yaml
+- generic [active] [ref=e1]:
+  - banner [ref=e2]:
+    - generic [ref=e3]:
+      - link "PracticeQAAutomation logo PracticeQAAutomation" [ref=e4] [cursor=pointer]:
+        - /url: /
+        - img "PracticeQAAutomation logo" [ref=e5]
+        - generic [ref=e6]: PracticeQAAutomation
+      - navigation "Main" [ref=e7]:
+        - button "Tools" [ref=e9]
+        - button "Apps" [ref=e13]
+        - button "Challenges" [ref=e17]
+        - button "AI" [ref=e21]:
+          - generic [aria-hidden] [ref=e22]: ✨
+          - text: AI
+        - button "Interview" [ref=e26]
+        - link "What's new New release" [ref=e29] [cursor=pointer]:
+          - /url: /releases
+          - generic [ref=e30]:
+            - text: What's new
+            - generic "New release" [ref=e31]
+        - link "About Me" [ref=e32] [cursor=pointer]:
+          - /url: /about
+      - generic [ref=e33]:
+        - link "Support this site" [ref=e34] [cursor=pointer]:
+          - /url: https://rzp.io/rzp/supportpracticeqaautomation
+          - generic [aria-hidden] [ref=e35]: ☕
+        - button "Switch to light theme" [ref=e36]
+  - main [ref=e40]:
+    - generic [ref=e41]:
+      - generic [ref=e43]:
+        - button "Go back" [ref=e44]
+        - link "📈 SalesPulse" [ref=e47] [cursor=pointer]:
+          - /url: /apps/crm
+          - generic [ref=e48]: 📈
+          - generic [ref=e49]: SalesPulse
+        - navigation [ref=e50]:
+          - link "Dashboard" [ref=e51] [cursor=pointer]:
+            - /url: /apps/crm/dashboard
+          - link "Leads" [ref=e52] [cursor=pointer]:
+            - /url: /apps/crm/leads
+          - link "Pipeline" [ref=e53] [cursor=pointer]:
+            - /url: /apps/crm/pipeline
+        - generic [ref=e54]:
+          - button "🧑‍🏫 AI coach · paused" [ref=e55]:
+            - text: 🧑‍🏫
+            - generic [ref=e56]: AI coach · paused
+          - generic [ref=e57]: Maya Chen
+          - button "Log out" [ref=e58] [cursor=pointer]
+      - generic [ref=e60]:
+        - heading "Welcome, Maya" [level=1] [ref=e61]
+        - generic [ref=e62]:
+          - generic [ref=e63]:
+            - paragraph [ref=e64]: Open leads
+            - paragraph [ref=e65]: "6"
+          - generic [ref=e66]:
+            - paragraph [ref=e67]: Pipeline value
+            - paragraph [ref=e68]: $227,000
+          - generic [ref=e69]:
+            - paragraph [ref=e70]: Won
+            - paragraph [ref=e71]: $55,000
+          - generic [ref=e72]:
+            - paragraph [ref=e73]: Win rate
+            - paragraph [ref=e74]: 50%
+        - generic [ref=e75]:
+          - generic [ref=e76]:
+            - heading "Pipeline by stage" [level=2] [ref=e77]
+            - list [ref=e78]:
+              - listitem [ref=e79]:
+                - generic [ref=e80]:
+                  - generic [ref=e81]: Qualified (1)
+                  - generic [ref=e82]: $42,000
+              - listitem [ref=e85]:
+                - generic [ref=e86]:
+                  - generic [ref=e87]: Proposal (2)
+                  - generic [ref=e88]: $167,000
+              - listitem [ref=e91]:
+                - generic [ref=e92]:
+                  - generic [ref=e93]: Negotiation (1)
+                  - generic [ref=e94]: $18,000
+              - listitem [ref=e97]:
+                - generic [ref=e98]:
+                  - generic [ref=e99]: Won (1)
+                  - generic [ref=e100]: $55,000
+              - listitem [ref=e103]:
+                - generic [ref=e104]:
+                  - generic [ref=e105]: Lost (1)
+                  - generic [ref=e106]: $24,000
+            - link "Open pipeline" [ref=e109] [cursor=pointer]:
+              - /url: /apps/crm/pipeline
+          - generic [ref=e110]:
+            - heading "Recent activity" [level=2] [ref=e111]
+            - paragraph [ref=e112]: No activity logged yet. Open a lead to add one.
+            - link "Work my leads" [ref=e113] [cursor=pointer]:
+              - /url: /apps/crm/leads
+  - contentinfo [ref=e114]:
+    - generic [ref=e115]:
+      - generic [ref=e116]:
+        - link "PracticeQAAutomation — home" [ref=e117] [cursor=pointer]:
+          - /url: /
+          - generic [ref=e118]: PracticeQAAutomation
+        - paragraph [ref=e119]: A free sandbox of real apps and interactive elements for Selenium, Playwright and Cypress practice.
+        - generic [ref=e120]:
+          - link "Follow us on LinkedIn" [ref=e121] [cursor=pointer]:
+            - /url: https://www.linkedin.com/company/practice-qa-automation
+          - link "Support this site" [ref=e124] [cursor=pointer]:
+            - /url: https://rzp.io/rzp/supportpracticeqaautomation
+            - generic [aria-hidden] [ref=e125]: ☕
+            - text: Support this site
+      - generic [ref=e126]:
+        - generic [ref=e127]:
+          - generic [ref=e128]: Tools
+          - link "Selenium" [ref=e129] [cursor=pointer]:
+            - /url: /selenium
+          - link "Playwright" [ref=e130] [cursor=pointer]:
+            - /url: /playwright
+          - link "Cypress" [ref=e131] [cursor=pointer]:
+            - /url: /cypress
+        - generic [ref=e132]:
+          - generic [ref=e133]: Apps
+          - link "All domain apps" [ref=e134] [cursor=pointer]:
+            - /url: /apps
+          - link "📘 Project KT" [ref=e135] [cursor=pointer]:
+            - /url: /projects
+          - link "Nova Shop" [ref=e136] [cursor=pointer]:
+            - /url: /shop
+          - link "TrustBank" [ref=e137] [cursor=pointer]:
+            - /url: /apps/bank
+          - link "SecureLife" [ref=e138] [cursor=pointer]:
+            - /url: /apps/insurance
+        - generic [ref=e139]:
+          - generic [ref=e140]: Practice
+          - link "📄 Start-here guide (PDF)" [ref=e141] [cursor=pointer]:
+            - /url: /downloads/practiceqa-start-guide.pdf
+          - link "Challenges" [ref=e142] [cursor=pointer]:
+            - /url: /challenges
+          - link "🔥 Daily challenge" [ref=e143] [cursor=pointer]:
+            - /url: /daily
+          - link "Basic Auth" [ref=e144] [cursor=pointer]:
+            - /url: /misc/basic-auth
+          - link "✨ AI tools" [ref=e145] [cursor=pointer]:
+            - /url: /ai
+          - link "🔌 API practice" [ref=e146] [cursor=pointer]:
+            - /url: /api-practice
+          - link "🗄️ SQL Playground" [ref=e147] [cursor=pointer]:
+            - /url: /sql-playground
+          - link "📈 Performance testing" [ref=e148] [cursor=pointer]:
+            - /url: /performance-testing
+          - link "🥒 BDD & Cucumber" [ref=e149] [cursor=pointer]:
+            - /url: /bdd
+          - link "🧱 Framework & CI" [ref=e150] [cursor=pointer]:
+            - /url: /framework-ci
+          - link "Test case library" [ref=e151] [cursor=pointer]:
+            - /url: /test-cases
+          - link "🎯 Interview questions" [ref=e152] [cursor=pointer]:
+            - /url: /interview
+          - link "🧠 Interview quiz" [ref=e153] [cursor=pointer]:
+            - /url: /interview/quiz
+          - link "🤝 Share your interview" [ref=e154] [cursor=pointer]:
+            - /url: /interview/share
+          - link "🆕 What's new" [ref=e155] [cursor=pointer]:
+            - /url: /releases
+          - link "About Me" [ref=e156] [cursor=pointer]:
+            - /url: /about
+          - link "Report a bug" [ref=e157] [cursor=pointer]:
+            - /url: /about#feedback
+    - generic [ref=e159]:
+      - paragraph [ref=e160]:
+        - text: © 2026 PracticeQAAutomation. All rights reserved. ·
+        - link "Privacy" [ref=e161] [cursor=pointer]:
+          - /url: /privacy
+      - paragraph [ref=e162]:
+        - text: Made by
+        - link "Amir" [ref=e163] [cursor=pointer]:
+          - /url: /about
+        - text: with
+        - img "love" [ref=e164]: ❤️
+  - alert [ref=e165]
+```

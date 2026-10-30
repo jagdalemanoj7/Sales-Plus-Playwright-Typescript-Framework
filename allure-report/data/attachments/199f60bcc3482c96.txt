@@ -1,0 +1,3 @@
+Application launched successfully
+Login page is displayed successfully
+Dashboard Page is displayed successfully

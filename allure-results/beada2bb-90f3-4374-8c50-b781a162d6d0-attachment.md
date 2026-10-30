@@ -1,0 +1,164 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\t-test.spec.ts >> Auth Test >> Who Am I
+- Location: tests\api\t-test.spec.ts:16:7
+
+# Error details
+
+```
+Error: expect(received).toBe(expected) // Object.is equality
+
+Expected: 2
+Received: undefined
+```
+
+# Test source
+
+```ts
+  86  | 
+  87  |     const expiresInSeconds = Number(responseBody[data.expiresInKey] ?? 15 * 60);
+  88  |     if (!Number.isFinite(expiresInSeconds) || expiresInSeconds <= 0) {
+  89  |       throw new Error(
+  90  |         `Invalid token expiry value: ${responseBody[data.expiresInKey]}`,
+  91  |       );
+  92  |     }
+  93  | 
+  94  |     this.accessTokens.set(user, {
+  95  |       value: accessToken,
+  96  |       expiresAt: Date.now() + Math.max(0, expiresInSeconds * 1000 - 30_000),
+  97  |     });
+  98  |     return accessToken;
+  99  |   }
+  100 | 
+  101 |   /**
+  102 |    * Common method to send the request and get the response.
+  103 |    * @param requestType
+  104 |    * @param endpoint
+  105 |    * @param payload
+  106 |    * @param token
+  107 |    * @returns
+  108 |    */
+  109 |   async getResponse(
+  110 |     requestType: string,
+  111 |     endpoint: string,
+  112 |     payload?: any,
+  113 |     token?: string,
+  114 |   ) {
+  115 |     if (!this.requestContext) {
+  116 |       throw new Error(
+  117 |         "Request context is not initialized. Call InitializeRequestContext() first.",
+  118 |       );
+  119 |     }
+  120 | 
+  121 |     const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+  122 |     switch (requestType.toLowerCase()) {
+  123 |       case "get":
+  124 |         this.response = await this.requestContext.get(endpoint, { headers });
+  125 |         break;
+  126 |       case "post":
+  127 |         this.response = await this.requestContext.post(endpoint, {
+  128 |           data: payload,
+  129 |           headers,
+  130 |         });
+  131 |         break;
+  132 |       case "put":
+  133 |         this.response = await this.requestContext.put(endpoint, {
+  134 |           data: payload,
+  135 |           headers,
+  136 |         });
+  137 |         break;
+  138 |       case "patch":
+  139 |         this.response = await this.requestContext.patch(endpoint, {
+  140 |           data: payload,
+  141 |           headers,
+  142 |         });
+  143 |         break;
+  144 |       case "delete":
+  145 |         this.response = await this.requestContext.delete(endpoint, { headers });
+  146 |         break;
+  147 |       default:
+  148 |         throw new Error(`Unsupported Request Type: ${requestType}`);
+  149 |     }
+  150 | 
+  151 |     return this.response;
+  152 |   }
+  153 | 
+  154 |   /**
+  155 |    * Common method to validate the status code
+  156 |    * @param expCode
+  157 |    */
+  158 |   async validateStatusCode(expCode: number) {
+  159 |     const actualCode = this.response.status();
+  160 |     await expect(actualCode).toBe(expCode);
+  161 |   }
+  162 | 
+  163 |   /**
+  164 |    * Common method to validate the status massage
+  165 |    * @param expMessage
+  166 |    */
+  167 |   async validateStatusMessage(expMessage: string) {
+  168 |     const actualMessage = this.response.statusText();
+  169 |     await expect(actualMessage).toBe(expMessage);
+  170 |   }
+  171 | 
+  172 |   private getResponseValue(responseBody: any, key: string): any {
+  173 |     return key
+  174 |       .split(".")
+  175 |       .reduce((value: any, part: string) => value?.[part], responseBody);
+  176 |   }
+  177 | 
+  178 |   /**
+  179 |    * Common method to validate response body
+  180 |    * @param key
+  181 |    * @param expValue
+  182 |    */
+  183 |   async validateResponseBody(key: string, expValue: any) {
+  184 |     const responseBody = await this.response.json();
+  185 |     const actualValue =  responseBody[key]//this.getResponseValue(responseBody, key);
+> 186 |     await expect(actualValue).toBe(expValue);
+      |                               ^ Error: expect(received).toBe(expected) // Object.is equality
+  187 |   }
+  188 | 
+  189 |   /**
+  190 |    * Common method to validate the response header
+  191 |    * @param headerName
+  192 |    * @param expValue
+  193 |    */
+  194 |   async validateResponseHeader(headerName: string, expValue: any) {
+  195 |     const header = await this.response.headers();
+  196 |     const actualValue = header[headerName];
+  197 |     await expect(actualValue).toBe(expValue);
+  198 |   }
+  199 | 
+  200 |   /**
+  201 |    * Common method to validate the schema response body
+  202 |    * @param key
+  203 |    * @param expDataType
+  204 |    */
+  205 |   async validateResponseSchema(key: string, expDataType: string) {
+  206 |     const responseBody = await this.response.json();
+  207 |     const actualValue = this.getResponseValue(responseBody, key);
+  208 |     const actualDataType = typeof actualValue;
+  209 |     await expect(actualDataType).toBe(expDataType);
+  210 |   }
+  211 | 
+  212 |   /**
+  213 |    * Common method to validate cookie in the response
+  214 |    * @param cookieName
+  215 |    * @param expValue
+  216 |    */
+  217 |   async validateResponseCookie(cookieName: string, expValue: any) {
+  218 |     const cookies = await this.response.cookies();
+  219 |     const cookie = cookies.find((c: any) => c.name === cookieName);
+  220 |     const actualValue = cookie ? cookie.value : undefined;
+  221 |     await expect(actualValue).toBe(expValue);
+  222 |   }
+  223 | }
+  224 | 
+```

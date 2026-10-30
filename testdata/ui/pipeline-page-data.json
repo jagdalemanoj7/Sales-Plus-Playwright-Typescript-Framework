@@ -1,0 +1,10 @@
+{
+    "Verify Drag And Drop Lead from Qualified to Proposal Section": {
+        "company": "Umbrella Health",
+        "qualifiedSection":"",
+        "proposalSection": "",
+        "negotiationSection":"",
+        "wonSection":"",
+        "lostSection":""
+    }
+}

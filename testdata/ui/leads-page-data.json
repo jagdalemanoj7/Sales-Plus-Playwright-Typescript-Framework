@@ -1,0 +1,45 @@
+{
+    "Verify Create New Lead And Convert It": {
+        "contactName": "Rahul Sharma",
+        "company": "Tech Nova Solutions",
+        "email": "rahul.sharma@technova.com",
+        "phone": "9876543210",
+        "source": "LinkedIn",
+        "estValue": "60000",
+        "status": "New",
+        "note": "Follow-up Discussion; Discussed project requirements with the client. Need to prepare a demo by next week.; 2026-10-18",
+        "logCall": "Outgoing call, Talked about product pricing and upcoming renewal around 12 minutes. Client requested a discount proposal",
+        "logEmail": "Subject: Proposal for Q4 Campaign From: rahul.sharma@technova.com To: priya.mehta@globalsoft.com Body: Hi Priya, Please find attached the proposal for the Q4 marketing campaign. Let me know if we can schedule a call to discuss further. Regards, Rahul Sharma Date: 2026-10-18",
+        "leadStatus": "Qualified",
+        "dealValue": "55500",
+        "expectedClose": "Within 60 days"        
+    },
+
+    "Verify Filtered Lead Record According To Status And Source": {
+        "statusOptions": ["New", "Contacted", "Qualified", "Unqualified", "Converted"],
+        "allStatuses": "All statuses",
+        "sourceOptions": ["Website", "Referral", "LinkedIn", "Event", "Cold call"],
+        "allSources": "All sources"
+    },
+
+    "Verify Owner Selective Assignment": {
+        "owner": "Nina Rossi",
+        "companies": ["Oscorp Labs","Pied Piper","Hooli Cloud", "Initech"],
+        "company": "Oscorp Labs"
+    },
+
+    "Verify Owner Bulk Assignment": {
+        "owner": "Nina Rossi",        
+        "company": "Oscorp Labs"
+    },
+
+    "Verify Assigned Owner Of Bulk Lead Filtered With Status":{
+        "status": "Qualified",
+        "owner": "Leo Park"
+    },
+
+    "Verify Clear Bulk Checked Lead":{
+        "":""
+    }
+
+}

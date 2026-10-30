@@ -1,0 +1,173 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: api\t-test.spec.ts >> Auth Test >> Who Am I
+- Location: tests\api\t-test.spec.ts:58:9
+
+# Error details
+
+```
+Error: Unknown login user: [object Object]
+```
+
+# Test source
+
+```ts
+  1   | import { expect, request } from "@playwright/test";
+  2   | import config from "../../config/config.json" with { type: "json" };
+  3   | import authData from "../../testdata/api/auth-data.json" with { type: "json" };
+  4   | 
+  5   | export class APICommons {
+  6   |   /**
+  7   |    * @param requestContex Pre-requisites of API requests like headers, authorization-related information, etc.
+  8   |    * @param response Output received from the API request
+  9   |    * @param payload  data for post/put/patch request
+  10  |    */    
+  11  |   private requestContext: any; // 
+  12  |   private response: any;       // Output received from the API request
+  13  |   private accessTokens = new Map<string, { value: string; expiresAt: number }>();
+  14  |   private expectedValue = null
+  15  |   
+  16  |   /**
+  17  |    * Method to Create Request Context (Meaningful adding base URL headers, authorizations, etc).
+  18  |    * @param requestType
+  19  |    * @param endpoint
+  20  |    * @param payload
+  21  |    * @return
+  22  |    */
+  23  |   async InitializeRequestContext() {
+  24  |     this.requestContext = await request.newContext({
+  25  |       baseURL: config.api.base_url,
+  26  |       extraHTTPHeaders: {},
+  27  |     });
+  28  |   }
+  29  | 
+  30  |   /**
+  31  |    * Common method to generate token before expiring
+  32  |    * @param user
+  33  |    * @param key
+  34  |    * @returns
+  35  |    */
+  36  |   async generateToken(user: string, key?: string): Promise<string> {
+  37  |     // This block checks whether a valid token is already cached for the requested user:
+  38  |     const cachedToken = this.accessTokens.get(user);
+  39  |     if (cachedToken && Date.now() < cachedToken.expiresAt) {
+  40  |       return cachedToken.value;
+  41  |     }
+  42  | 
+  43  |     // describes the shape of the login data object
+  44  |     const loginRequests: Record<string, typeof authData.loginAsAdmin> = {
+  45  |       loginAsUserRavi: authData.loginAsUserRavi,
+  46  |       loginAsUserMeera: authData.loginAsUserMeera,
+  47  |       loginAsAdmin: authData.loginAsAdmin,
+  48  |     };
+  49  |     const data = loginRequests[user];
+  50  |     if (!data) {
+> 51  |       throw new Error(`Unknown login user: ${user}`);
+      |             ^ Error: Unknown login user: [object Object]
+  52  |     }
+  53  | 
+  54  |     const response = await this.getResponse(
+  55  |       data.requestType,
+  56  |       data.endpoint,
+  57  |       data.payload,
+  58  |     );
+  59  | 
+  60  |     if (!response.ok()) {
+  61  |       throw new Error(`Token request failed: ${response.status()}`);
+  62  |     }
+  63  | 
+  64  |     const responseBody = await response.json();
+  65  |     // validate response code, message and body
+  66  |     await this.validateStatusCode(data.expCode)
+  67  |     await this.validateStatusMessage(data.expStatusMessage)
+  68  |     await this.validateResponseBody(data.tokenTypeKey, data.tokenTypeValue)
+  69  |     let expectedValue = parseInt(data.expiresInValue)
+  70  |     await this.validateResponseBody(data.expiresInKey, expectedValue)
+  71  |     expectedValue = parseInt(data.userIdValue)
+  72  |     await this.validateResponseBody(data.userIdKey, expectedValue)
+  73  |     await this.validateResponseBody(data.userNameKey, data.userNameValue)
+  74  |     await this.validateResponseBody(data.nameKey, data.nameValue)
+  75  |     await this.validateResponseBody(data.userEmailKey, data.userEmailValue)
+  76  |     await this.validateResponseBody(data.userRoleKey, data.userRoleValue)
+  77  | 
+  78  |     const tokenKey = key ?? data.tokenKey;
+  79  |     const accessToken = responseBody[tokenKey];
+  80  |     if (typeof accessToken !== "string" || accessToken.length === 0) {
+  81  |       throw new Error(
+  82  |         `Login response did not contain a token in '${tokenKey}'`,
+  83  |       );
+  84  |     }
+  85  | 
+  86  |     const expiresInSeconds = Number(responseBody[data.expiresInKey] ?? 15 * 60);
+  87  |     if (!Number.isFinite(expiresInSeconds) || expiresInSeconds <= 0) {
+  88  |       throw new Error(
+  89  |         `Invalid token expiry value: ${responseBody[data.expiresInKey]}`,
+  90  |       );
+  91  |     }
+  92  | 
+  93  |     this.accessTokens.set(user, {
+  94  |       value: accessToken,
+  95  |       expiresAt: Date.now() + Math.max(0, expiresInSeconds * 1000 - 30_000),
+  96  |     });
+  97  |     return accessToken;
+  98  |   }
+  99  | 
+  100 |   /**
+  101 |    * Common method to send the request and get the response.
+  102 |    * @param requestType
+  103 |    * @param endpoint
+  104 |    * @param payload
+  105 |    * @param token
+  106 |    * @returns
+  107 |    */
+  108 |   async getResponse(
+  109 |     requestType: string,
+  110 |     endpoint: string,
+  111 |     payload?: any,
+  112 |     token?: string,
+  113 |   ) {
+  114 |     if (!this.requestContext) {
+  115 |       throw new Error(
+  116 |         "Request context is not initialized. Call InitializeRequestContext() first.",
+  117 |       );
+  118 |     }
+  119 | 
+  120 |     const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
+  121 |     switch (requestType.toLowerCase()) {
+  122 |       case "get":
+  123 |         this.response = await this.requestContext.get(endpoint, { headers });
+  124 |         break;
+  125 |       case "post":
+  126 |         this.response = await this.requestContext.post(endpoint, {
+  127 |           data: payload,
+  128 |           headers,
+  129 |         });
+  130 |         break;
+  131 |       case "put":
+  132 |         this.response = await this.requestContext.put(endpoint, {
+  133 |           data: payload,
+  134 |           headers,
+  135 |         });
+  136 |         break;
+  137 |       case "patch":
+  138 |         this.response = await this.requestContext.patch(endpoint, {
+  139 |           data: payload,
+  140 |           headers,
+  141 |         });
+  142 |         break;
+  143 |       case "delete":
+  144 |         this.response = await this.requestContext.delete(endpoint, { headers });
+  145 |         break;
+  146 |       default:
+  147 |         throw new Error(`Unsupported Request Type: ${requestType}`);
+  148 |     }
+  149 | 
+  150 |     return this.response;
+  151 |   }
+```

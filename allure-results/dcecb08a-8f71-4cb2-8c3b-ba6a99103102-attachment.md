@@ -1,0 +1,516 @@
+# Instructions
+
+- Following Playwright test failed.
+- Explain why, be concise, respect Playwright best practices.
+- Provide a snippet of code with the fix, if possible.
+
+# Test info
+
+- Name: ui\leads-page-test.spec.ts >> Leads Page Feature Test >> Verify Owner Bulk Assignment
+- Location: tests\ui\leads-page-test.spec.ts:140:9
+
+# Error details
+
+```
+Error: expect(locator).toHaveText(expected) failed
+
+Locator: locator('//td[6]').nth(12)
+Expected: "Nina Rossi"
+Timeout: 5000ms
+Error: element(s) not found
+
+Call log:
+  - Expect "toHaveText" locator('//td[6]').nth(12) with timeout 5000ms
+  - waiting for locator('//td[6]').nth(12)
+
+```
+
+```yaml
+- banner:
+  - link "PracticeQAAutomation logo PracticeQAAutomation":
+    - /url: /
+    - img "PracticeQAAutomation logo"
+    - text: PracticeQAAutomation
+  - navigation "Main":
+    - button "Tools"
+    - button "Apps"
+    - button "Challenges"
+    - button "AI"
+    - button "Interview"
+    - link "What's new New release":
+      - /url: /releases
+      - text: What's new
+    - link "About Me":
+      - /url: /about
+  - link "Support this site":
+    - /url: https://rzp.io/rzp/supportpracticeqaautomation
+  - button "Switch to light theme"
+- main:
+  - button "Go back"
+  - link "📈 SalesPulse":
+    - /url: /apps/crm
+  - navigation:
+    - link "Dashboard":
+      - /url: /apps/crm/dashboard
+    - link "Leads":
+      - /url: /apps/crm/leads
+    - link "Pipeline":
+      - /url: /apps/crm/pipeline
+  - button "🧑‍🏫 AI coach · paused"
+  - text: Maya Chen
+  - button "Log out"
+  - heading "Leads" [level=1]
+  - paragraph: 12 leads
+  - button "+ New lead"
+  - searchbox "Search leads"
+  - combobox "Status":
+    - option "All statuses" [selected]
+    - option "New"
+    - option "Contacted"
+    - option "Qualified"
+    - option "Unqualified"
+    - option "Converted"
+  - combobox "Source":
+    - option "All sources" [selected]
+    - option "Website"
+    - option "Referral"
+    - option "LinkedIn"
+    - option "Event"
+    - option "Cold call"
+  - table:
+    - rowgroup:
+      - row "Select all Lead Company Source Status Owner Value":
+        - columnheader "Select all":
+          - checkbox "Select all"
+        - columnheader "Lead"
+        - columnheader "Company"
+        - columnheader "Source"
+        - columnheader "Status"
+        - columnheader "Owner"
+        - columnheader "Value"
+    - rowgroup:
+      - row "Select Owen Scott Owen Scott owen@oscorp.com Oscorp Labs Referral Unqualified Nina Rossi $54,000":
+        - cell "Select Owen Scott":
+          - checkbox "Select Owen Scott"
+        - cell "Owen Scott owen@oscorp.com":
+          - link "Owen Scott":
+            - /url: /apps/crm/leads/L-1012
+          - text: owen@oscorp.com
+        - cell "Oscorp Labs"
+        - cell "Referral"
+        - cell "Unqualified"
+        - cell "Nina Rossi"
+        - cell "$54,000"
+      - row "Select Ivy Nguyen Ivy Nguyen ivy@tyrell.com Tyrell Robotics Website Qualified Nina Rossi $55,000":
+        - cell "Select Ivy Nguyen":
+          - checkbox "Select Ivy Nguyen"
+        - cell "Ivy Nguyen ivy@tyrell.com":
+          - link "Ivy Nguyen":
+            - /url: /apps/crm/leads/L-1011
+          - text: ivy@tyrell.com
+        - cell "Tyrell Robotics"
+        - cell "Website"
+        - cell "Qualified"
+        - cell "Nina Rossi"
+        - cell "$55,000"
+      - row "Select Ryan Patel Ryan Patel ryan@cyberdyne.com Cyberdyne Systems Cold call Contacted Nina Rossi $56,000":
+        - cell "Select Ryan Patel":
+          - checkbox "Select Ryan Patel"
+        - cell "Ryan Patel ryan@cyberdyne.com":
+          - link "Ryan Patel":
+            - /url: /apps/crm/leads/L-1010
+          - text: ryan@cyberdyne.com
+        - cell "Cyberdyne Systems"
+        - cell "Cold call"
+        - cell "Contacted"
+        - cell "Nina Rossi"
+        - cell "$56,000"
+      - row "Select Chloe Martin Chloe Martin chloe@pied.com Pied Piper Event New Nina Rossi $57,000":
+        - cell "Select Chloe Martin":
+          - checkbox "Select Chloe Martin"
+        - cell "Chloe Martin chloe@pied.com":
+          - link "Chloe Martin":
+            - /url: /apps/crm/leads/L-1009
+          - text: chloe@pied.com
+        - cell "Pied Piper"
+        - cell "Event"
+        - cell "New"
+        - cell "Nina Rossi"
+        - cell "$57,000"
+      - row "Select Lucas Meyer Lucas Meyer lucas@vandelay.com Vandelay Imports LinkedIn Unqualified Nina Rossi $58,000":
+        - cell "Select Lucas Meyer":
+          - checkbox "Select Lucas Meyer"
+        - cell "Lucas Meyer lucas@vandelay.com":
+          - link "Lucas Meyer":
+            - /url: /apps/crm/leads/L-1008
+          - text: lucas@vandelay.com
+        - cell "Vandelay Imports"
+        - cell "LinkedIn"
+        - cell "Unqualified"
+        - cell "Nina Rossi"
+        - cell "$58,000"
+      - row "Select Zoe Adams Zoe Adams zoe@soylent.com Soylent Foods Referral Qualified Nina Rossi $59,000":
+        - cell "Select Zoe Adams":
+          - checkbox "Select Zoe Adams"
+        - cell "Zoe Adams zoe@soylent.com":
+          - link "Zoe Adams":
+            - /url: /apps/crm/leads/L-1007
+          - text: zoe@soylent.com
+        - cell "Soylent Foods"
+        - cell "Referral"
+        - cell "Qualified"
+        - cell "Nina Rossi"
+        - cell "$59,000"
+      - row "Select Ethan Kim Ethan Kim ethan@hooli.com Hooli Cloud Website Contacted Nina Rossi $60,000":
+        - cell "Select Ethan Kim":
+          - checkbox "Select Ethan Kim"
+        - cell "Ethan Kim ethan@hooli.com":
+          - link "Ethan Kim":
+            - /url: /apps/crm/leads/L-1006
+          - text: ethan@hooli.com
+        - cell "Hooli Cloud"
+        - cell "Website"
+        - cell "Contacted"
+        - cell "Nina Rossi"
+        - cell "$60,000"
+      - row "Select Mia Lopez Mia Lopez mia@wayne.com Wayne Retail Cold call New Nina Rossi $61,000":
+        - cell "Select Mia Lopez":
+          - checkbox "Select Mia Lopez"
+        - cell "Mia Lopez mia@wayne.com":
+          - link "Mia Lopez":
+            - /url: /apps/crm/leads/L-1005
+          - text: mia@wayne.com
+        - cell "Wayne Retail"
+        - cell "Cold call"
+        - cell "New"
+        - cell "Nina Rossi"
+        - cell "$61,000"
+      - row "Select Emma Wilson Emma Wilson emma@stark.com Stark Logistics Event Unqualified Nina Rossi $62,000":
+        - cell "Select Emma Wilson":
+          - checkbox "Select Emma Wilson"
+        - cell "Emma Wilson emma@stark.com":
+          - link "Emma Wilson":
+            - /url: /apps/crm/leads/L-1004
+          - text: emma@stark.com
+        - cell "Stark Logistics"
+        - cell "Event"
+        - cell "Unqualified"
+        - cell "Nina Rossi"
+        - cell "$62,000"
+      - row "Select Noah Singh Noah Singh noah@umbrella.com Umbrella Health LinkedIn Qualified Nina Rossi $63,000":
+        - cell "Select Noah Singh":
+          - checkbox "Select Noah Singh"
+        - cell "Noah Singh noah@umbrella.com":
+          - link "Noah Singh":
+            - /url: /apps/crm/leads/L-1003
+          - text: noah@umbrella.com
+        - cell "Umbrella Health"
+        - cell "LinkedIn"
+        - cell "Qualified"
+        - cell "Nina Rossi"
+        - cell "$63,000"
+      - row "Select Liam Carter Liam Carter liam@initech.com Initech Referral Contacted Nina Rossi $64,000":
+        - cell "Select Liam Carter":
+          - checkbox "Select Liam Carter"
+        - cell "Liam Carter liam@initech.com":
+          - link "Liam Carter":
+            - /url: /apps/crm/leads/L-1002
+          - text: liam@initech.com
+        - cell "Initech"
+        - cell "Referral"
+        - cell "Contacted"
+        - cell "Nina Rossi"
+        - cell "$64,000"
+      - row "Select Ava Brooks Ava Brooks ava@acme.com Acme Industries Website New Nina Rossi $5,000":
+        - cell "Select Ava Brooks":
+          - checkbox "Select Ava Brooks"
+        - cell "Ava Brooks ava@acme.com":
+          - link "Ava Brooks":
+            - /url: /apps/crm/leads/L-1001
+          - text: ava@acme.com
+        - cell "Acme Industries"
+        - cell "Website"
+        - cell "New"
+        - cell "Nina Rossi"
+        - cell "$5,000"
+- contentinfo:
+  - link "PracticeQAAutomation — home":
+    - /url: /
+    - text: PracticeQAAutomation
+  - paragraph: A free sandbox of real apps and interactive elements for Selenium, Playwright and Cypress practice.
+  - link "Follow us on LinkedIn":
+    - /url: https://www.linkedin.com/company/practice-qa-automation
+  - link "Support this site":
+    - /url: https://rzp.io/rzp/supportpracticeqaautomation
+  - text: Tools
+  - link "Selenium":
+    - /url: /selenium
+  - link "Playwright":
+    - /url: /playwright
+  - link "Cypress":
+    - /url: /cypress
+  - text: Apps
+  - link "All domain apps":
+    - /url: /apps
+  - link "📘 Project KT":
+    - /url: /projects
+  - link "Nova Shop":
+    - /url: /shop
+  - link "TrustBank":
+    - /url: /apps/bank
+  - link "SecureLife":
+    - /url: /apps/insurance
+  - text: Practice
+  - link "📄 Start-here guide (PDF)":
+    - /url: /downloads/practiceqa-start-guide.pdf
+  - link "Challenges":
+    - /url: /challenges
+  - link "🔥 Daily challenge":
+    - /url: /daily
+  - link "Basic Auth":
+    - /url: /misc/basic-auth
+  - link "✨ AI tools":
+    - /url: /ai
+  - link "🔌 API practice":
+    - /url: /api-practice
+  - link "🗄️ SQL Playground":
+    - /url: /sql-playground
+  - link "📈 Performance testing":
+    - /url: /performance-testing
+  - link "🥒 BDD & Cucumber":
+    - /url: /bdd
+  - link "🧱 Framework & CI":
+    - /url: /framework-ci
+  - link "Test case library":
+    - /url: /test-cases
+  - link "🎯 Interview questions":
+    - /url: /interview
+  - link "🧠 Interview quiz":
+    - /url: /interview/quiz
+  - link "🤝 Share your interview":
+    - /url: /interview/share
+  - link "🆕 What's new":
+    - /url: /releases
+  - link "About Me":
+    - /url: /about
+  - link "Report a bug":
+    - /url: /about#feedback
+  - paragraph:
+    - text: © 2026 PracticeQAAutomation. All rights reserved. ·
+    - link "Privacy":
+      - /url: /privacy
+  - paragraph:
+    - text: Made by
+    - link "Amir":
+      - /url: /about
+    - text: with
+    - img "love": ❤️
+- alert
+```
+
+# Test source
+
+```ts
+  8   |     this.page = page;
+  9   |   }
+  10  | 
+  11  |   // Common method to launch the application
+  12  |   async launchApplication(url: string, title: string): Promise<void> {
+  13  |     await this.page.goto(url);
+  14  |     await this.page.waitForURL(url);
+  15  |     await this.page.setViewportSize({ width: 1520, height: 810 });
+  16  |     await expect(this.page).toHaveTitle(title);
+  17  |   }
+  18  | 
+  19  |   // Scroll to specified element
+  20  |   async scrollToElement(locator: Locator, index = 0): Promise<void> {
+  21  |     await locator.nth(index).scrollIntoViewIfNeeded({ timeout: 60000 });
+  22  |   }
+  23  | 
+  24  |   async click(locator: Locator): Promise<void> {
+  25  |     await locator.click();
+  26  |   }
+  27  | 
+  28  |   // Double Click
+  29  |   async doubleClick(locator: Locator): Promise<void> {
+  30  |     await locator.dblclick();
+  31  |   }
+  32  | 
+  33  |   // Scroll to specified element
+  34  |   async rightClick(locator: Locator): Promise<void> {
+  35  |     await locator.click({ button: "right" });
+  36  |   }
+  37  | 
+  38  |   // Hover on an element
+  39  |   async hoverElement(locator: Locator): Promise<void> {
+  40  |     await locator.hover();
+  41  |   }
+  42  | 
+  43  |   // Force Click to element
+  44  |   async forceClick(locator: Locator): Promise<void> {
+  45  |     await locator.click({ force: true });
+  46  |   }
+  47  | 
+  48  |   // Clear text to textbox element
+  49  |   async clearText(locator: Locator): Promise<void> {
+  50  |     await locator.clear();
+  51  |   }
+  52  | 
+  53  |   // Provide text to textbox element
+  54  |   async enterText(locator: Locator, text: string): Promise<void> {
+  55  |     await locator.fill(text);
+  56  |   }
+  57  | 
+  58  |   // get the text provided in the textbox
+  59  |   async getText(locator: Locator): Promise<string> {
+  60  |     return await locator.inputValue();
+  61  |   }
+  62  | 
+  63  |   // Press key on an element
+  64  |   async pressKey(locator: Locator, key: string): Promise<void> {
+  65  |     await locator.press(key);
+  66  |   }
+  67  | 
+  68  |   // Select option from dropdown
+  69  |   async selectOption(locator: Locator, option: string): Promise<void> {
+  70  |     await locator.selectOption(option);
+  71  |   }
+  72  | 
+  73  |   async getElementText(locator: Locator): Promise<string | null> {
+  74  |     return await locator.textContent();
+  75  |   }
+  76  | 
+  77  |   // Compare text values
+  78  |   async compareText(actual: string, expected: string): Promise<void> {
+  79  |     if (!actual.match(expected)) {
+  80  |       throw new Error(`Expected Value is ${expected} , But found ${actual}`);
+  81  |     }
+  82  |   }
+  83  | 
+  84  |   // get the text from element using innerText() method
+  85  |   async getElementInnerText(locator: Locator, index: number): Promise<string> {
+  86  |     return await locator.nth(index).innerText();
+  87  |   }
+  88  | 
+  89  |   // get the all text from elements using innerText() method
+  90  |   async getAllElementInnerText(locator: Locator): Promise<string[]> {
+  91  |     return await locator.allInnerTexts();
+  92  |   }
+  93  | 
+  94  |   // Verify text filled in textbox
+  95  |   async verifyTextFilled(
+  96  |     locator: Locator,
+  97  |     expectedValue: string,
+  98  |   ): Promise<void> {
+  99  |     await expect(locator).toHaveValue(expectedValue);
+  100 |   }
+  101 | 
+  102 |   // verify text displayed
+  103 |   async verifyDisplayedText(
+  104 |     locator: Locator,
+  105 |     expectedText: string,
+  106 |     index: number
+  107 |   ): Promise<void> {
+> 108 |     await expect((locator).nth(index)).toHaveText(expectedText);
+      |                                        ^ Error: expect(locator).toHaveText(expected) failed
+  109 |   }
+  110 | 
+  111 |   // Count of element
+  112 |   async verifyElementCount(locator: Locator, count: number): Promise<void> {
+  113 |     await expect(locator).toHaveCount(count);
+  114 |   }
+  115 | 
+  116 |   // Get element attribute
+  117 |   async getElementAttribute(
+  118 |     locator: Locator,
+  119 |     attribute: string,
+  120 |   ): Promise<string | null> {
+  121 |     return await locator.getAttribute(attribute);
+  122 |   }
+  123 | 
+  124 |   // Upload an element
+  125 |   async uploadFile(locator: Locator, filePath: string): Promise<void> {
+  126 |     await locator.setInputFiles(filePath);
+  127 |   }
+  128 | 
+  129 |   async scrollToFilteredElement(element: Locator): Promise<void> {
+  130 |     await element.scrollIntoViewIfNeeded({ timeout: 50000 });
+  131 |   }
+  132 | 
+  133 |   // Filter rlement
+  134 |   async filter(locator: Locator, data: string): Promise<Locator> {
+  135 |     const filteredElement = locator.filter({ hasText: data });
+  136 |     await this.scrollToFilteredElement(filteredElement);
+  137 |     await expect(filteredElement).toBeVisible({ timeout: 50000 });
+  138 |     return filteredElement;
+  139 |   }
+  140 | 
+  141 |   // Filter rlement
+  142 |   async locatorFilter(
+  143 |     outerLocator: Locator,
+  144 |     innerLocator: Locator,
+  145 |     data: string,
+  146 |     childSelector: string,
+  147 |   ): Promise<Locator> {
+  148 |     const filteredElement = outerLocator.filter({
+  149 |       has: innerLocator.filter({ hasText: data }),
+  150 |     });
+  151 |     const childElement = filteredElement.locator(childSelector);
+  152 |     await this.scrollToFilteredElement(childElement);
+  153 |     await expect(childElement).toBeVisible({ timeout: 50000 });
+  154 |     return childElement;
+  155 |   }
+  156 | 
+  157 |   // Drag and Drop Element
+  158 |   async dragAndDrop(
+  159 |     sourceElement: Locator,
+  160 |     targetElement: Locator,
+  161 |   ): Promise<void> {
+  162 |     await sourceElement.dragTo(targetElement);
+  163 |   }
+  164 | 
+  165 |   // Verify element having text value
+  166 |   async verifyElementText(
+  167 |     locator: Locator,
+  168 |     expectedText: string,
+  169 |   ): Promise<void> {
+  170 |     await expect(locator).toHaveText(expectedText);
+  171 |   }
+  172 | 
+  173 |   // Check if an element is visible
+  174 |   async isElementVisible(locator: Locator): Promise<void> {
+  175 |     await expect(locator).toBeVisible({ timeout: 50000 });
+  176 |   }
+  177 | 
+  178 |   async isElementEditable(locator: Locator): Promise<void> {
+  179 |     await expect(locator).toBeEditable();
+  180 |   }
+  181 | 
+  182 |   async isElementHidden(locator: Locator): Promise<void> {
+  183 |     await expect(locator).toBeHidden();
+  184 |   }
+  185 | 
+  186 |   async isElementEnabled(locator: Locator): Promise<void> {
+  187 |     await expect(locator).toBeEnabled();
+  188 |   }
+  189 | 
+  190 |   // Check if an Checkbox/ Radio is not selected
+  191 |   async isCheckboxNotChecked(locator: Locator): Promise<void> {
+  192 |     await expect(locator).not.toBeChecked();
+  193 |   }
+  194 | 
+  195 |   // Check if an Checkbox/ Radio is selected
+  196 |   async isCheckboxChecked(locator: Locator): Promise<void> {
+  197 |     await expect(locator).toBeChecked();
+  198 |   }
+  199 | 
+  200 |   // Handle alert pop-up
+  201 |   async handleAlert(
+  202 |     action: "accept" | "dismiss",
+  203 |     textToEnter?: string,
+  204 |   ): Promise<void> {
+  205 |     this.page.on("dialog", async (dialog) => {
+  206 |       if (action === "accept") {
+  207 |         await dialog.accept(textToEnter);
+  208 |       } else {
+```

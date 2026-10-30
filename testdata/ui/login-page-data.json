@@ -1,0 +1,26 @@
+{
+    "Verify login functionality with valid credentials":{
+        "username":"sales@crm.dev",
+        "password":"Crm@123"
+    },
+    "Verify login functionality with valid username and invalid password":{
+        "username":"sales@crm.dev",
+        "password":"invalid"
+    },
+    "Verify login functionality with invalid username and valid password":{
+        "username":"invalid",
+        "password":"Crm@123"
+    },
+    "Verify login functionality with invalid credentials":{
+        "username":"invalid",
+        "password":"invalid"
+    },
+    "Verify login functionality without credentials":{
+        "username":"",
+        "password":""
+    },
+    "Verify logout functionality with valid credentials":{
+        "username":"sales@crm.dev",
+        "password":"Crm@123"
+    }
+}

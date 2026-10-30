@@ -1,0 +1,12 @@
+Application launched successfully
+Login page is displayed successfully
+Dashboard Page is displayed successfully
+Leads button is clicked
+Leads page is displayed successfully
+clicked on New Lead button
+New Lead form is displayed successfully
+New Lead details are provided successfully
+Search contact name is entered successfully
+New Lead is displayed successfully
+Searched Lead is clicked successfully
+Convert to Lead page is displayed successfully

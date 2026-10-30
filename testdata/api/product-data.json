@@ -1,0 +1,84 @@
+{
+    "listProducts": {
+        "requestType": "get",
+        "endpoint": "/api/products",
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "pageKey": "page",
+        "pageValue": 1,
+        "limitKey": "limit",
+        "limitValue": 10,
+        "totalKey": "total",
+        "totalValue": 24,
+        "totalPagesKey": "totalPages",
+        "totalPagesValue": 3,
+        "priceKey": "data.price",
+        "stockKey": "data.stock",
+        "ratingKey": "data.rating",
+        "X-Total-CountHeader": "x-total-count",
+        "X-Total-CountValue": "24",
+        "objectKeys": [
+            "id",
+            "sku",
+            "name",
+            "category",
+            "price",
+            "stock",
+            "rating",
+            "createdAt",
+            "updatedAt"
+        ],
+        "objectSchemas": [
+            "number",
+            "string",
+            "string",
+            "string",
+            "number",
+            "number",
+            "number",
+            "string",
+            "string"
+        ]
+    },
+    "searchAnyCase": {
+        "requestType": "get",
+        "endpoint": "/api/products",
+        "queryParams": {
+            "search": "MOUSE"
+        },
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "pageKey": "page",
+        "pageValue": 1,
+        "limitKey": "limit",
+        "limitValue": 10,
+        "totalKey": "total",
+        "totalValue": 1,
+        "totalPagesKey": "totalPages",
+        "totalPagesValue": 1,
+        "X-Total-CountHeader": "x-total-count",
+        "X-Total-CountValue": "1",
+        "objectKeys": [
+            "id",
+            "sku",
+            "name",
+            "category",
+            "price",
+            "stock",
+            "rating",
+            "createdAt",
+            "updatedAt"
+        ],
+        "objectSchemas": [
+            "number",
+            "string",
+            "string",
+            "string",
+            "number",
+            "number",
+            "number",
+            "string",
+            "string"
+        ]
+    }
+}

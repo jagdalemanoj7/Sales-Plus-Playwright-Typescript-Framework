@@ -1,0 +1,2 @@
+Application launched successfully
+Login page is displayed successfully
