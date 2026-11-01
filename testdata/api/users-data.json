@@ -1,0 +1,26 @@
+{
+    "listUsers":{
+        "requestType": "get",
+        "endpoint": "/api/users",
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "totalKey": "total",
+        "totalValue": 3,
+        "dataKey": "data",
+        "passwordKey": "password",
+        "objectKeys": [
+            "id",
+            "username",
+            "name",
+            "email",
+            "role"
+        ],
+        "objectSchemas": [
+            "number",
+            "string",
+            "string",
+            "string",            
+            "string"
+        ]
+    }
+}

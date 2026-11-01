@@ -1,0 +1,101 @@
+{
+    "placeAnOrder": {
+        "requestType": "post",
+        "endpoint": "/api/orders",
+        "payload":{
+            "items": [
+                {
+                    "productId": 1,
+                    "quantity": 3
+                }
+            ]
+        },
+        "expCode": 201,
+        "expStatusMessage": "Created",
+        "orderIdKey": "id",
+        "dataKey": "items",
+        "userIdKey": "userId",
+        "userIdValue": 2,
+        "items": [
+            {
+                "productId": 1,
+                "name": "Wireless Mouse",
+                "quantity": 3,
+                "unitPrice": 799,
+                "lineTotal": 2397
+            }
+        ],
+        "productIdKey": "productId",
+        "productIdValue": 1,
+        "nameKey":"name",
+        "nameValue": "Wireless Mouse",
+        "quantityKey": "quantity",
+        "quantityValue": 3,
+        "unitPriceKey": "unitPrice",
+        "unitPriceValue": 799,
+        "lineTotalKey": "lineTotal",
+        "lineTotalValue": 2397,
+        "totalKey": "total",
+        "totalValue": 2397,
+        "statusKey": "status",
+        "statusValue": "PLACED"
+    },
+    "anotherCustomersOrder":{
+        "requestType": "get",
+        "endpoint": "/api/orders",
+        "productId": 2,
+        "expCode": 403,
+        "expStatusMessage": "Forbidden",
+        "codeKey": "error.code",
+        "codeValue": "FORBIDDEN",
+        "messageKey": "error.message",
+        "messageValue": "This order belongs to another customer."
+    },
+    "cancelMyOrder":{
+        "requestType": "post",
+        "endpoint1": "/api/orders",
+        "endpoint2": "cancel",
+        "expCode": 200,
+        "expStatusMessage": "OK",
+        "itemsKey": "items",
+        "productIdKey": "productId",
+        "productIdValue": 1,
+        "nameKey":"name",
+        "nameValue": "Wireless Mouse",
+        "quantityKey": "quantity",
+        "quantityValue": 3,
+        "unitPriceKey": "unitPrice",
+        "unitPriceValue": 799,
+        "lineTotalKey": "lineTotal",
+        "lineTotalValue": 2397,
+        "totalKey": "total",
+        "totalValue": 2397,
+        "statusKey": "status",
+        "statusValue": "CANCELLED"
+    },
+    "outOfStock":{
+        "requestType": "post",
+        "endpoint": "/api/orders",
+        "payload":{
+            "items": [
+                {
+                    "productId": 2,
+                    "quantity": 1
+                }
+            ]
+        },
+        "expCode": 409,
+        "expStatusMessage": "Conflict",
+        "orderIdKey": "id",
+        "errorKey": "error",
+        "codeKey": "error.code",
+        "codeValue": "OUT_OF_STOCK",
+        "messageKey": "error.message",
+        "messageValue": "Only 0 left of Mechanical Keyboard.",
+        "detailsKey":"error.details",
+        "fieldKey": "field",
+        "fieldValue": "items",
+        "detailsMessageKey": "message",
+        "detailsMessageValue": "productId 2: requested 1, available 0"
+    }
+}

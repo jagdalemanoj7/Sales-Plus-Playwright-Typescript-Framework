@@ -111,7 +111,7 @@ export class APICommons {
     endpoint: string,
     payload?: any,
     token?: string,
-    params?: Record<string, string| number | boolean>
+    params?: Record<string, string | number | boolean>,
   ) {
     if (!this.requestContext) {
       throw new Error(
@@ -122,7 +122,10 @@ export class APICommons {
     const headers = token ? { Authorization: `Bearer ${token}` } : undefined;
     switch (requestType.toLowerCase()) {
       case "get":
-        this.response = await this.requestContext.get(endpoint, { headers, params, });
+        this.response = await this.requestContext.get(endpoint, {
+          headers,
+          params,
+        });
         break;
       case "post":
         this.response = await this.requestContext.post(endpoint, {
@@ -146,12 +149,14 @@ export class APICommons {
         });
         break;
       case "delete":
-        this.response = await this.requestContext.delete(endpoint, { headers, params, });
+        this.response = await this.requestContext.delete(endpoint, {
+          headers,
+          params,
+        });
         break;
       default:
         throw new Error(`Unsupported Request Type: ${requestType}`);
     }
-
     return this.response;
   }
 
@@ -174,15 +179,21 @@ export class APICommons {
   }
 
   /**
-   * 
-   * @param responseBody 
-   * @param key 
-   * @returns 
+   * Common method to get value of any property
+   * @param responseBody
+   * @param key
+   * @returns
    */
   private getResponseValue(responseBody: any, key: string): any {
     const value = key
       .split(".")
       .reduce((value: any, part: string) => value?.[part], responseBody);
+    return value;
+  }
+
+  async getPropertyValue(key: string): Promise<any>{
+    const responseBody = await this.response.json()
+    const value = this.getResponseValue(responseBody, key)
     return value
   }
 
@@ -221,11 +232,140 @@ export class APICommons {
   }
 
   /**
-   * Common method to validate the value is positive and non-negative number
+   * Common method to validate cookie in the response
+   * @param cookieName
+   * @param expValue
+   */
+  async validateResponseCookie(cookieName: string, expValue: any) {
+    const cookies = await this.response.cookies();
+    const cookie = cookies.find((c: any) => c.name === cookieName);
+    const actualValue = cookie ? cookie.value : undefined;
+    await expect(actualValue).toBe(expValue);
+  }
+
+  /**
+   * Common method to validate the specific value of key
    * @param key
    * @param expDataType
    */
-    async validatePositiveNumberValues(
+  async validateItemsLength(
+    arrayPath: string,
+    expectedLength: number,
+  ): Promise<void> {
+    const responseBody = await this.response.json();
+    const items = this.getResponseValue(responseBody, arrayPath);
+
+    expect(Array.isArray(items), `Expected "${arrayPath}" to be an array`).toBe(
+      true,
+    );
+    expect(items.length, `Unexpected number of items in "${arrayPath}"`).toBe(
+      expectedLength,
+    );
+  }
+
+  /**
+   * Common method to validate Obejct Keys
+   * @param arrayPath 
+   * @param requiredKeys 
+   */
+  async validateObjectKeys(
+    arrayPath: string,
+    requiredKeys: string[],
+  ): Promise<void> {
+    const responseBody = await this.response.json();
+    const items = this.getResponseValue(responseBody, arrayPath);
+
+    expect(Array.isArray(items), `Expected "${arrayPath}" to be an array`).toBe(
+      true,
+    );
+
+    for (const [index, item] of items.entries()) {
+      expect(
+        item !== null && typeof item === "object" && !Array.isArray(item),
+        `Item ${index} should be an object`,
+      ).toBe(true);
+
+      const missingKeys = requiredKeys.filter(
+        (key) => !Object.prototype.hasOwnProperty.call(item, key),
+      );
+      
+      expect(missingKeys, `Product ${index} is missing required keys`).toEqual(
+        [],
+      );
+
+    }
+  }
+
+  async validateMissingObjectKeys(
+    arrayPath: string,
+    requiredKeys: string[],
+    missingKey?: any
+  ): Promise<void> {
+    const responseBody = await this.response.json();
+    const items = this.getResponseValue(responseBody, arrayPath);
+
+    expect(Array.isArray(items), `Expected "${arrayPath}" to be an array`).toBe(
+      true,
+    );
+
+    for (const [index, item] of items.entries()) {
+      expect(
+        item !== null && typeof item === "object" && !Array.isArray(item),
+        `Item ${index} should be an object`,
+      ).toBe(true);
+
+      const missingKeys = requiredKeys.filter(
+        (key) => !Object.prototype.hasOwnProperty.call(item, key),
+      );
+      if(missingKey === undefined) {
+        expect(missingKeys, `Product ${index} is missing required keys`).toEqual(
+        [],
+      );
+    }
+      else {
+      expect(missingKeys, `Product ${index} is missing required keys`).not.toEqual(
+        [missingKey],
+      );
+    }
+    }
+  }
+
+  /**
+   * Common method to validate the specific value of key
+   * @param arrayPath
+   * @param dataIndex
+   * @param property
+   * @param expectedValue
+   */
+  async validateSpecificArrayKeyValue(
+    arrayPath: string,
+    dataIndex: number,
+    property: string,
+    expectedValue: any,
+  ): Promise<void> {
+    const responseBody = await this.response.json();
+    const items = this.getResponseValue(responseBody, arrayPath);
+
+    expect(Array.isArray(items), `"${arrayPath}" should be an array`).toBe(
+      true,
+    );
+    expect(dataIndex, "Index should be non-negative").toBeGreaterThanOrEqual(0);
+    expect(items.length, `No item at index ${dataIndex}`).toBeGreaterThan(
+      dataIndex,
+    );
+
+    const item = items[dataIndex];
+    expect(item).toHaveProperty(property);
+    expect(item[property]).toBe(expectedValue);
+  }
+
+  /**
+   * Common method to validate the value is positive and non-negative number
+   * @param arrayPath
+   * @param property
+   * @param greaterThanZero
+   */
+  async validatePositiveNumberValues(
     arrayPath: string,
     property: string,
     greaterThanZero = false,
@@ -233,8 +373,8 @@ export class APICommons {
     const responseBody = await this.response.json();
     const items = this.getResponseValue(responseBody, arrayPath);
 
-    expect(Array.isArray(items), `Expected "${arrayPath}" to be an array`
-    ).toBe(true,
+    expect(Array.isArray(items), `Expected "${arrayPath}" to be an array`).toBe(
+      true,
     );
 
     expect(items.length, `Expected at least one item in "${arrayPath}"`,
@@ -263,6 +403,7 @@ export class APICommons {
 
   /**
    * Common method to validate the schema response body
+   * @param arrayPath
    * @param key
    * @param expDataType
    */
@@ -298,20 +439,13 @@ export class APICommons {
   }
 
   /**
-   * Common method to validate cookie in the response
-   * @param cookieName
-   * @param expValue
+   * Common method to validate the price in descending order
+   * @param arrayPath 
+   * @param property 
    */
-  async validateResponseCookie(cookieName: string, expValue: any) {
-    const cookies = await this.response.cookies();
-    const cookie = cookies.find((c: any) => c.name === cookieName);
-    const actualValue = cookie ? cookie.value : undefined;
-    await expect(actualValue).toBe(expValue);
-  }
-
-  async validateObjectKeys(
+  async validateSortedPriceInDescendingOrder(
     arrayPath: string,
-    requiredKeys: string[],
+    property: string,
   ): Promise<void> {
     const responseBody = await this.response.json();
     const items = this.getResponseValue(responseBody, arrayPath);
@@ -320,19 +454,26 @@ export class APICommons {
       true,
     );
 
-    for (const [index, item] of items.entries()) {
+    const prices: number[] = [];
+    for (const [itemIndex, item] of items.entries()) {
       expect(
         item !== null && typeof item === "object" && !Array.isArray(item),
-        `Item ${index} should be an object`,
+        `Item ${itemIndex} should be an object`,
       ).toBe(true);
 
-      const missingKeys = requiredKeys.filter(
-        (key) => !Object.prototype.hasOwnProperty.call(item, key),
-      );
+      const value = item[property];
+      expect(
+        typeof value,
+        `Expected ${arrayPath}[${itemIndex}].${property} to be a number`,
+      ).toBe("number");
+      prices.push(value);
+    }
 
-      expect(missingKeys, `Product ${index} is missing required keys`).toEqual(
-        [],
-      );
+    for (let index = 1; index < prices.length; index++) {
+      expect(
+        prices[index - 1],
+        `${property} at index ${index - 1} should be >= ${property} at index ${index}`,
+      ).toBeGreaterThanOrEqual(prices[index]);
     }
   }
 }

@@ -14,6 +14,8 @@
     "test:ui": "playwright test --ui",
     "test:auth": "npx playwright test tests/api/auth",
     "test:prod":"npx playwright test tests/api/products",
+    "test:ord":"npx playwright test tests/api/order",
+    "test:user":"npx playwright test tests/api/users",
     "test:debug": "playwright test --debug",
     "report": "playwright show-report",
     "report:allure": "allure generate allure-results --clean -o allure-report && allure open allure-report"
